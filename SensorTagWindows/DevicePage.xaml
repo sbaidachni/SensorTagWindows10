@@ -1,0 +1,84 @@
+﻿<Page
+    x:Class="SensorTagWindows.DevicePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SensorTagWindows"
+    xmlns:code="using:SensorTagWindows.Code"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <code:AccelerometerConverter x:Name="accConv"></code:AccelerometerConverter>
+        <code:GyroscopeConverter x:Name="gyroConv"></code:GyroscopeConverter>
+        <code:HumidityConverter x:Name="humConv"></code:HumidityConverter>
+        <code:IRAmbientConverter x:Name="ambConv"></code:IRAmbientConverter>
+        <code:IRTargetConverter x:Name="targetConv"></code:IRTargetConverter>
+        <code:KeysConverter x:Name="keysConv"></code:KeysConverter>
+        <code:LightConverter x:Name="lightConv"></code:LightConverter>
+        <code:MagnetometerConverter x:Name="magConv"></code:MagnetometerConverter>
+        <code:PressureConverter x:Name="pressureConv"></code:PressureConverter>
+    </Page.Resources>
+
+    <Grid Background="#edf7f8" Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Background="Red">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="SensorTag Explorer" Foreground="White" Margin="10" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+            <TextBlock Grid.Row="1" Text="{Binding DeviceID}" Foreground="White" Margin="10" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ProgressBar Name="progress" Margin="10" Width="300" HorizontalAlignment="Center" IsIndeterminate="True"></ProgressBar>
+        </Grid>
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Humidity: " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Text="{Binding Humidity, Mode=OneWay, Converter={StaticResource humConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+
+            <TextBlock Grid.Row="1" Text="Pressure: " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="1" Text="{Binding Pressure, Mode=OneWay , Converter={StaticResource pressureConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+
+            <TextBlock Grid.Row="2" Text="Keys (Left, Right): " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="2" Text="{Binding Keys, Mode=OneWay, Converter={StaticResource keysConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+            
+            <TextBlock Grid.Row="3" Text="Magnetometer (X, Y, Z): " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="3" Text="{Binding Movement, Mode=OneWay, Converter={StaticResource magConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+            
+            <TextBlock Grid.Row="4" Text="Accelerometer (X, Y, Z): " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="4" Text="{Binding Movement, Mode=OneWay, Converter={StaticResource accConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+            
+            <TextBlock Grid.Row="5" Text="Gyroscope (X, Y, Z): " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="5" Text="{Binding Movement, Mode=OneWay, Converter={StaticResource gyroConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+            
+            <TextBlock Grid.Row="6" Text="Ambient Temperature: " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="6" Text="{Binding IRTemperature, Mode=OneWay, Converter={StaticResource ambConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+
+            <TextBlock Grid.Row="7" Text="Target Temperature: " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="7" Text="{Binding IRTemperature, Mode=OneWay, Converter={StaticResource targetConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+
+            <TextBlock Grid.Row="8" Text="Light: " Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock Grid.Row="8" Text="{Binding Light, Mode=OneWay, Converter={StaticResource lightConv}}" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Margin="10"></TextBlock>
+        </Grid>
+    </Grid>
+</Page>
