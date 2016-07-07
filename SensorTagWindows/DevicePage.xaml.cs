@@ -31,8 +31,8 @@ namespace SensorTagWindows
     public sealed partial class DevicePage : Page
     {
         static DeviceClient deviceClient;
-        static string iotHubUri = "dxiothub.azure-devices.net";
-        static string deviceKey = "9Q14vDW1ZKjRW/epnJorGGtv3lZf0En9Wu2A13fybok=";
+        static string iotHubUri = "";
+        static string deviceKey = "";
 
         DispatcherTimer timer = new DispatcherTimer();
         int sensorCount = 0;
